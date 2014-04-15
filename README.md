@@ -13,3 +13,4 @@ Well then you should CARPE the hell out of an EVENTUS!
   * method for sharing your experience with the event that you went to
 
 [trello](https://trello.com/b/dH8S6Zou/eventbriter)
+
