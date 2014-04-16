@@ -26,7 +26,14 @@ get '/user/:id' do
   erb :profile
 end
 
+get '/logout' do
+  session[:user_id] = nil
+  redirect '/'
+end
+
 get '/location' do
+  puts "we're in location route"
+  puts params
   Locations.create(latitude: params[:latitude], longitude: params[:longitude], user_id: sessions[:user_id])
   options = {}
   options[:latitude] = params[:latitude]
@@ -39,7 +46,5 @@ get '/location' do
   @user_results["events"].to_json
 end
 
-get '/logout' do
-  session[:user_id] = nil
-  redirect '/'
-end
+
+

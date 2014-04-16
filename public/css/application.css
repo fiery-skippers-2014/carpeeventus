@@ -8,3 +8,11 @@
 th {
   text-align: left;
 }
+
+ html, body, .container, #map-canvas {
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+        height: 400px;
+        margin-top: 5%;
+      }
