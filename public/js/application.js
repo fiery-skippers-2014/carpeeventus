@@ -66,9 +66,7 @@ var getEvents = function () {
       data: {position: coords}
     })
       .done(function(data) {
-      console.log('success')
-      console.log(data)
-      return data
+      $('body').append(data)
       })
   });
 }
