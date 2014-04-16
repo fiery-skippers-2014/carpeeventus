@@ -1,0 +1,32 @@
+<div class="preference">
+<h2> Your current prefrences </h2>
+ <%current_user.name%>
+ <%current_user.email%>
+ <%current_user.distance%>
+ <%current_user.category%>
+</div>
+
+
+
+<div class="locations">
+<h2> You last locations </h2>
+  <% @locations.each do |location| %>
+    <li><%=location.latitude%> <%=location.longitude%></li>
+  <% end %>
+</div>
+
+
+<div class="upcoming_events">
+<h2> Events you are interested in </h2>
+
+
+</div>
+
+
+<div class="past_events">
+<h2> Events you went to: </h2>
+
+
+</div>
+
+

@@ -62,7 +62,7 @@ var getEvents = function () {
       console.log(coords)
       $.ajax({
       type: 'GET',
-      url: '/coords',
+      url: '/location',
       data: {position: coords}
     })
       .done(function(data) {
