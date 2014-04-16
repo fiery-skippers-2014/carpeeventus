@@ -1,3 +1,5 @@
+require 'awesome_print'
+
 get '/' do
   erb :index
 end
@@ -33,17 +35,24 @@ end
 
 get '/location' do
   puts "we're in location route"
-  puts params
-  Locations.create(latitude: params[:latitude], longitude: params[:longitude], user_id: sessions[:user_id])
+  unless current_user
+    session[:user_id]=nil
+  end
+  Location.create(latitude: params["position"][0], longitude: params["position"][1], user_id: session[:user_id])
   options = {}
-  options[:latitude] = params[:latitude]
-  options[:longitude] = params[:longitude]
+  options[:latitude] = params["position"][0]
+  options[:longitude] = params["position"][1]
   if current_user
     options[:radius] = current_user.radius
     options[:category] = current_user.category
   end
-  @user_results = Eventbrite::Client.new(options)
-  @user_results["events"].to_json
+  @search_results = Eventbrite::Client.new(options)
+  x= @search_results.to_json
+  y = JSON.parse(x)
+  @all_events = y["user_results"]["events"]
+  @summary_of_results = @all_events.shift
+  p @all_events.first
+  erb :_list_events, :layout => false
 end
 
 
