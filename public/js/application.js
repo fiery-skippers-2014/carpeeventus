@@ -48,38 +48,37 @@ function handleNoGeolocation(errorFlag) {
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
-// $(document).ready(function() {
+$(document).ready(function() {
 
-  // $('.find-event').on('click', function(event){
-  //   event.preventDefault();
+  $('.find-event').on('click', getEvents)
 
+  })
 
-  //   if(navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(function(position) {
-  //       var pos = new google.maps.LatLng(position.coords.latitude,
-  //                                        position.coords.longitude);
+var getEvents = function () {
+  event.preventDefault();
 
-  //     });
-  //   }
-  // })
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var coords = [position.coords.latitude, position.coords.longitude]
+      console.log(coords)
+      $.ajax({
+      type: 'GET',
+      url: '/coords',
+      data: {position: coords}
+    })
+      .done(function(data) {
+      console.log('success')
+      console.log(data)
+      return data
+      })
+  });
+}
+
 
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
   // $('form').on('submit', function(event){
   //   event.preventDefault();
   //   $('.loading').text('LOADING YOUR PORN')
 
-  //   $.ajax({
-  //     type: 'GET',
-  //     url: '/subreddits',
-  //     data: $(this).serialize()
-  //   })
-  //   .done(function(data) {
-  //     var parsedSubreddits = JSON.parse(data)
-  //     for (var i = 0; i < parsedSubreddits.length; i++) {
-  //       $('.nsfw').append('<p>'+(parsedSubreddits[i])+'<p>')
-  //     }
-  //     $('.loading').text("HERE'S YOUR PORNOGRAPHY")
-  //   })
-  // });
+  //
 
 // });
