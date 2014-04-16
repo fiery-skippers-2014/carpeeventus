@@ -51,7 +51,11 @@ get '/location' do
   y = JSON.parse(x)
   @all_events = y["user_results"]["events"]
   @summary_of_results = @all_events.shift
-  p @all_events.first
+  # p @all_events
+  p @all_events.first["event"]["distance"] #distance to location, this works!
+  p @all_events.first["event"]["venue"]["address"]
+  p @all_events.first["event"]["venue"]["latitude"]
+  p @all_events.first["event"]["venue"]["longitude"]
   erb :_list_events, :layout => false
 end
 
