@@ -5,6 +5,7 @@ ruby '1.9.3'
 gem 'pg'
 
 # Sinatra driver
+gem 'koala'
 gem 'sinatra'
 gem 'sinatra-contrib'
 
