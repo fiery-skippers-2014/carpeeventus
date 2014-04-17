@@ -64,9 +64,9 @@ var getEvents = function () {
       type: 'GET',
       url: '/location',
       data: {position: coords}
-    })
+      })
       .done(function(data) {
-      $('body').append(data)
+        $('body').append(data)
       })
   });
 }
