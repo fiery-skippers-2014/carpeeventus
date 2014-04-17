@@ -23,8 +23,20 @@ get '/sessions/new' do
 end
 
 get '/user/:id' do
+  @locations = Location.all   #!!!!change this to current_user.locations and add sort_by created_at
+  @events = Event.all      #!!!!!change this current_user.events
+  @past_events = []
+  @upcoming_events = []
 
-  @location = current_user.Locations.all
+  @events.each do |event|
+    if Time.parse(event.end_date)- Time.now > 0
+      @past_events << event
+    else
+      @upcoming_events << event
+    end
+  end
+
+
   erb :profile
 end
 
@@ -44,7 +56,7 @@ get '/location' do
   options = {}
   options[:latitude] = params["position"][0]
   options[:longitude] = params["position"][1]
-  # if current_user
+  # if current_user  ADD THIS AGAIN once user starts working
   #   options[:radius] = current_user.radius
   #   options[:category] = current_user.category
   # end
@@ -56,7 +68,6 @@ get '/location' do
   @all_events = y["user_results"]["events"]
 
   @summary_of_results = @all_events.shift
-  p @all_events.first["event"]["id"]
   erb :_list_events, :layout => false
 end
 
@@ -66,6 +77,20 @@ post '/event/new' do
   params[:user_id] = session[:user_id]
   Event.create(params)
 end
+
+
+post '/location/new' do
+  p params
+  Location.find_by_id(params[:id]).update_attribute('location', params[:location])
+end
+
+post '/feedback' do
+
+
+end
+
+
+
 
 
 

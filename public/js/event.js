@@ -4,15 +4,14 @@ $(document).ready(function() {
 
   function eventClick(){
     $('body').on('click', '.eventChoice', eventChoice)
-
+    $('body').on('submit', '.locationChoice', addLocation)
+    $('body').on('submit', '.feedbackSubmitted', submitFeedback)
   }
 
 
   function eventChoice() {
-    console.log("we are in the eventChoice function")
     event.preventDefault();
     var event_container = $(this).parent()
-    debugger
     var event_data = {
       title: event_container.children('.title').text(),
       address: event_container.children('.event_address').text(),
@@ -25,10 +24,42 @@ $(document).ready(function() {
       type: 'post',
       data: event_data,
       success: function(data) {
-        console.log('u really hit the button')
+
         //console.log(data)
       }
     })
+
+
+   function addLocation(event) {
+      event.preventDefault();
+      var jqhxr = $.ajax({
+        url: '/location/new',
+        type: 'post',
+        data: $(this).serialize(),
+        success: function(data) {
+          console.log(data);
+        $('.locationChoice').append(data)
+        }
+      })
+    }
+
+     function addLocation(event) {
+      event.preventDefault();
+      var jqhxr = $.ajax({
+        url: '/location/new',
+        type: 'post',
+        data: $(this).serialize(),
+        success: function(data) {
+          console.log(data);
+        $('.locationChoice').append(data)
+        }
+      })
+    }
+
+
+
+
+
 
   }
   eventClick()
