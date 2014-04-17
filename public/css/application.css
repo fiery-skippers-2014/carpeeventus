@@ -10,7 +10,7 @@ th {
 }
 
  html, body, .container, #map-canvas {
-  width: 800px;
+  width: 900px;
   margin-left: auto;
   margin-right: auto;
         height: 400px;
@@ -21,4 +21,9 @@ th {
    width: 200px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.event {
+  max-height:200px;
+  overflow:scroll;
 }
