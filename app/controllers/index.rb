@@ -35,25 +35,34 @@ end
 
 get '/location' do
   puts "we're in location route"
-  unless current_user
-    session[:user_id]=nil
+  session[:user_id] = 1    #remove this at some point
+  if current_user
+    latitude = params["position"][0].to_f.round(3).to_s
+    longitude = params["position"][1].to_f.round(3).to_s
+    Location.create(latitude: latitude, longitude: longitude, user_id: session[:user_id])
   end
-  Location.create(latitude: params["position"][0], longitude: params["position"][1], user_id: session[:user_id])
   options = {}
   options[:latitude] = params["position"][0]
   options[:longitude] = params["position"][1]
-  if current_user
-    options[:radius] = current_user.radius
-    options[:category] = current_user.category
-  end
+  # if current_user
+  #   options[:radius] = current_user.radius
+  #   options[:category] = current_user.category
+  # end
   @search_results = Eventbrite::Client.new(options)
   x= @search_results.to_json
   y = JSON.parse(x)
   @all_events = y["user_results"]["events"]
   @summary_of_results = @all_events.shift
-  p @all_events.first
   erb :_list_events, :layout => false
 end
+
+
+post '/event/new' do
+  session[:user_id] = 1
+  params[:user_id] = session[:user_id]
+  Event.create(params)
+end
+
 
 
 

@@ -1,20 +1,14 @@
 
 <div class="upcoming_events">
-<h2> Events you are interested in </h2>
+<h2> Events you might be interested in:</h2>
 <ul>
   <%@all_events.each do |event| %>
     <div class="event">
-      <span data-title="<%=event["event"]["title"]%>"><%=event["event"]["title"]%></span>
-      <span data-description="<%=event["event"]["description"]%>"><%=event["event"]["description"]%></span>
-      <span data-address="<%=event["event"]["adddress"]%>"><%=event["event"]["adddress"]%></span>
-      <span data-start-date="<%=event["event"]["start_date"]%>"><%=event["event"]["start_date"]%></span>
-      <span data-end-date="<%=event["event"]["end_date"]%>"><%=event["event"]["end_date"]%></span>
-      <span data-latitude="<%=event["event"]["latitude"]%>"><%=event["event"]["latitude"]%></span>
-      <span data-longitude="<%=event["event"]["longitude"]%>"><%=event["event"]["longitude"]%></span>
-      <form method='post' action='event/new'>
-        <input type='submit' value='I want to go to this event'>
-      </form>
-      <br><br><br>
+      <h3><span class="title"><%=event["event"]["title"]%></span><br> - Distance from you:<%=event["event"]["distance"]%> - Address: <span class="event_address"><%=event["event"]["venue"]["address"]%> - </span><a href= "#"  class="eventChoice">I'm interested in this event</a><br>
+      Start Date: <span class="start_date"><%=event["event"]["start_date"]%></span><br>
+      End Date: <span class="end_date"><%=event["event"]["end_date"]%></span><br></h3><br>
+      <%=event["event"]["description"]%>
+      <br>
     </div>
   </ul>
  <%end%>
