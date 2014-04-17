@@ -49,10 +49,14 @@ get '/location' do
   #   options[:category] = current_user.category
   # end
   @search_results = Eventbrite::Client.new(options)
+
   x= @search_results.to_json
   y = JSON.parse(x)
+
   @all_events = y["user_results"]["events"]
+
   @summary_of_results = @all_events.shift
+  p @all_events.first["event"]["id"]
   erb :_list_events, :layout => false
 end
 

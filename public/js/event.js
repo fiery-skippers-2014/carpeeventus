@@ -12,7 +12,7 @@ $(document).ready(function() {
     console.log("we are in the eventChoice function")
     event.preventDefault();
     var event_container = $(this).parent()
-
+    debugger
     var event_data = {
       title: event_container.children('.title').text(),
       address: event_container.children('.event_address').text(),

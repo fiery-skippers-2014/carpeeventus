@@ -3,7 +3,7 @@
 <h2> Events you might be interested in:</h2>
 <ul>
   <%@all_events.each do |event| %>
-    <div class="event">
+    <div class="event" data-id=<%=event["event"]["id"]%>>
       <h3><span class="title"><%=event["event"]["title"]%></span><br> - Distance from you:<%=event["event"]["distance"]%> - Address: <span class="event_address"><%=event["event"]["venue"]["address"]%> - </span><a href= "#"  class="eventChoice">I'm interested in this event</a><br>
       Start Date: <span class="start_date"><%=event["event"]["start_date"]%></span><br>
       End Date: <span class="end_date"><%=event["event"]["end_date"]%></span><br></h3><br>
