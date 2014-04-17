@@ -29,7 +29,6 @@ $(document).ready(function() {
       }
     })
 
-
    function addLocation(event) {
       event.preventDefault();
       var jqhxr = $.ajax({
@@ -43,15 +42,15 @@ $(document).ready(function() {
       })
     }
 
-     function addLocation(event) {
+     function submitFeedback(event) {
       event.preventDefault();
       var jqhxr = $.ajax({
-        url: '/location/new',
+        url: '/feedback/new',
         type: 'post',
         data: $(this).serialize(),
         success: function(data) {
           console.log(data);
-        $('.locationChoice').append(data)
+        $('.feedbackSubmitted').append(data)
         }
       })
     }

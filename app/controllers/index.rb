@@ -84,7 +84,7 @@ post '/location/new' do
   Location.find_by_id(params[:id]).update_attribute('location', params[:location])
 end
 
-post '/feedback' do
+post '/feedback/new' do
 
 
 end
