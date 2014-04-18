@@ -54,6 +54,13 @@ $(document).ready(function() {
 
   })
 
+
+// var logout = function () {
+//   console.log("we are here")
+//   debugger
+//   FB.logout()
+// }
+
 var getEvents = function () {
   event.preventDefault();
 

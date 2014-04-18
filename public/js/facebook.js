@@ -70,5 +70,20 @@ window.fbAsyncInit = function() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Good to see you, ' + response.name + '.');
+      var token = FB.getAccessToken()
+      var user_data = {
+        name: response.name,
+        facebook_id: response.id,
+        token: token
+      }
+      var jxqr = $.ajax({
+        url: '/user',
+        type: 'POST',
+        data: user_data
+      }).done(function(data){
+          $('.box').empty()
+          $('.box').append(data)
+          $('#logout').on('click', FB.logout())
+      })
     });
   }

@@ -9,13 +9,20 @@ get '/sign_up' do
 end
 
 post '/user' do
-  @user = User.create(params)
-  if @user.errors.full_messages.count != 0
-    erb :_errors
-  else
+  if user_exists(params[:facebook_id]) == true
+    @user = User.find_by_facebook_id(params[:facebook_id])
+    @user.token = params[:token]
+    @user.save
     session[:user_id] = @user.id
-    redirect("/user/#{session[:user_id]}")
+  else
+    @user = User.create(params)
+    if @user.errors.full_messages.count != 0
+      erb :_errors
+    else
+    session[:user_id] = @user.id
+    end
   end
+    redirect("/user/#{session[:user_id]}")
 end
 
 get '/sessions/new' do
@@ -35,9 +42,7 @@ get '/user/:id' do
       @upcoming_events << event
     end
   end
-
-
-  erb :profile
+  erb :profile, :layout => false
 end
 
 get '/logout' do
