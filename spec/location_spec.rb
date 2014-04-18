@@ -1,8 +1,7 @@
-require 'spec_helper'
+require 'spec helper'
 
 describe Location do
-  it "should identify location of user when loggin into index" do
-    location = get ('/location', {position: [3948394893,48398439]})
-    expect location
-  end
+  it {should belongs_to :user}
+  it {should validate_uniqueness_of(:latitude)}
+  it {should validate_uniqueness_of(:longitude)}
 end

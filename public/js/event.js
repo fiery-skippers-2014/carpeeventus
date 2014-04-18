@@ -6,8 +6,8 @@ $(document).ready(function() {
     $('body').on('click', '.eventChoice', eventChoice)
     $('body').on('submit', '.locationChoice', addLocation)
     $('body').on('submit', '.feedbackSubmitted', submitFeedback)
-  }
 
+  }
 
   function eventChoice() {
     event.preventDefault();
@@ -18,16 +18,15 @@ $(document).ready(function() {
       start_date: event_container.children('.start_date').text(),
       end_date: event_container.children('.end_date').text()
     }
-    // var event_data = 1
     $.ajax({
       url: '/event/new',
       type: 'post',
       data: event_data,
       success: function(data) {
-
-        //console.log(data)
+        $('.profile').html(data)
       }
     })
+  }
 
    function addLocation(event) {
       event.preventDefault();
@@ -37,12 +36,12 @@ $(document).ready(function() {
         data: $(this).serialize(),
         success: function(data) {
           console.log(data);
-        $('.locationChoice').append(data)
+          $('.locationChoice').append(data)
         }
       })
     }
 
-     function submitFeedback(event) {
+    function submitFeedback(event) {
       event.preventDefault();
       var jqhxr = $.ajax({
         url: '/feedback/new',
@@ -50,17 +49,11 @@ $(document).ready(function() {
         data: $(this).serialize(),
         success: function(data) {
           console.log(data);
-        $('.feedbackSubmitted').append(data)
+          $('.feedbackSubmitted').append(data)
         }
       })
     }
 
-
-
-
-
-
-  }
   eventClick()
 })
 

@@ -51,8 +51,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
 $(document).ready(function() {
 
   $('.find-event').on('click', getEvents)
-
-  })
+   // $('#logout').on('click', FB.logout(function(response){}))
+})
 
 
 // var logout = function () {
@@ -67,13 +67,17 @@ var getEvents = function () {
     navigator.geolocation.getCurrentPosition(function(position) {
       var coords = [position.coords.latitude, position.coords.longitude]
       console.log(coords)
+
+      var category = $('select.mycategory').val()
+      var radius = $('select.mydistance').val()
+
       $.ajax({
       type: 'GET',
       url: '/location',
-      data: {position: coords}
+      data: {position: coords, category: category, radius: radius}
       })
       .done(function(data) {
-        $('body').append(data)
+        $('.events').html(data)
       })
   });
 }
