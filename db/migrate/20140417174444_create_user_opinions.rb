@@ -5,5 +5,6 @@ class CreateUserOpinions < ActiveRecord::Migration
       t.belongs_to :event
       t.belongs_to :user
       t.timestamps
+    end
   end
 end

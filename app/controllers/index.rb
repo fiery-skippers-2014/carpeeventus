@@ -8,6 +8,10 @@ get '/sign_up' do
   erb :sign_up
 end
 
+get '/sessions/new' do
+  erb :sign_in
+end
+
 post '/user' do
   if user_exists(params[:facebook_id]) == true
     @user = User.find_by_facebook_id(params[:facebook_id])
@@ -16,17 +20,8 @@ post '/user' do
     session[:user_id] = @user.id
   else
     @user = User.create(params)
-    if @user.errors.full_messages.count != 0
-      erb :_errors
-    else
-    session[:user_id] = @user.id
-    end
   end
-    redirect("/user/#{session[:user_id]}")
-end
-
-get '/sessions/new' do
-  erb :sign_in
+  redirect("/user/#{session[:user_id]}")
 end
 
 get '/user/:id' do
@@ -34,7 +29,6 @@ get '/user/:id' do
   @events = current_user.events
   @past_events = []
   @upcoming_events = []
-
   @events.each do |event|
     if Time.parse(event.end_date)- Time.now > 0
       @past_events << event
@@ -43,11 +37,6 @@ get '/user/:id' do
     end
   end
   erb :profile, :layout => false
-end
-
-get '/logout' do
-  session[:user_id] = nil
-  redirect '/'
 end
 
 get '/location' do
@@ -64,7 +53,7 @@ get '/location' do
 
   @search_results = Eventbrite::Client.new(options)
 
-  x= @search_results.to_json
+  x = @search_results.to_json
   y = JSON.parse(x)
 
   @all_events = y["user_results"]["events"]
@@ -73,31 +62,31 @@ get '/location' do
   erb :_list_events, :layout => false
 end
 
-
 post '/event/new' do
   params[:user_id] = session[:user_id]
   Event.create(params)
   redirect("/user/#{session[:user_id]}")
 end
 
-
 post '/location/new' do
-  p params
   Location.find_by_id(params[:id]).update_attribute('location', params[:location])
+  redirect("/user/#{session[:user_id]}")
 end
 
 post '/event/feedback' do
-  p params
   UserOpinion.create(feedback: params[:feedback], event_id: params[:id], user_id: session[:user_id])
   redirect("/user/#{session[:user_id]}")
 end
 
-get '/opinions' do
+get '/opinion/new' do
   @opinions = UserOpinion.all.order(created_at: :desc)
-  erb :_opinions
+   redirect("/user/#{session[:user_id]}")
 end
 
-
+get '/logout' do
+  session[:user_id] = nil
+  redirect '/'
+end
 
 
 
