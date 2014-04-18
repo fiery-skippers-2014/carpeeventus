@@ -25,10 +25,24 @@ th {
 
 .event {
   max-height:200px;
-  overflow:scroll;
+ /*4*/
 }
 
-.descriptionNone {
+/*.descriptionNone {
   display:none;
   visibility:hidden;
+}*/
+
+.tiptext {
+    background:#ccc;
+    border: 1px #333 solid;
+    padding:5px;
+    width:100px;
+}
+
+.descript{
+    display:none;
+    position:absolute;
+    border:1px solid #000;
+    background: gray;
 }

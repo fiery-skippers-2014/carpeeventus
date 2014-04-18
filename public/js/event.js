@@ -6,14 +6,38 @@ $(document).ready(function() {
     $('body').on('click', '.eventChoice', eventChoice)
     $('body').on('submit', '.locationChoice', addLocation)
     $('body').on('submit', '.feedbackSubmitted', submitFeedback)
-    $('body').on('click', '.description', showDescription)
+   //  $('body').on('mouseover', '.description', function() {
+   // $(this).parent().children('.descript').show()
+       $('body').on('mouseover', '.event', function() {
+   $(this).children('.descript').show()})
+    $('body').on('mouseout', '.event', function() {
+   $(this).children('.descript').show()})
+
+    // $('body').on('click', '.description', showDescription)
+    // $('body').on('click', '.description', function() {
+    //    $(this).parent().children('.descript').show()
+
+    // $('.event').mouseover(function() {
+    //   $(this).children(".descript").show();
+// })
+    // $(this).children(".descript").show();
+    // $('body').on('click', '.description',
+    // console.log("OVER THE THING")
+
   }
 
-  function showDescription (){
-    var event_container = $(this).parent()
-    event_container.children('#desc').toggleClass('descriptionNone')
-    // $('#desc').toggleClass('descriptionNone')
-  }
+//     $(this).children(".descript").show();
+// }).mouseout(function() {
+//     $(this).children(".descript").hide();
+// });
+
+// $(".event").mouseover(function (){console.log($(this).children(".descript"))})
+
+  // function showDescription (){
+  //   var event_container = $(this).parent()
+  //   event_container.children('#desc').toggleClass('descriptionNone')
+  //   // $('#desc').toggleClass('descriptionNone')
+  // }
 
   function eventChoice() {
     event.preventDefault();
