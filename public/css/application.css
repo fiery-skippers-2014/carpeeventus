@@ -53,7 +53,7 @@ th {
   text-align: center;
 }
 
-#find-event {
+.find-event {
   border: 2px;
   margin: auto;
   padding: 20px 20px 20px 20px;
