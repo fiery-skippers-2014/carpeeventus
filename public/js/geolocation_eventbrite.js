@@ -53,6 +53,7 @@ $(document).ready(function() {
 
 var getEvents = function () {
   event.preventDefault();
+  $('.events').html('<img src="/carpediem.gif" />')
 
     navigator.geolocation.getCurrentPosition(function(position) {
       var coords = [position.coords.latitude, position.coords.longitude]

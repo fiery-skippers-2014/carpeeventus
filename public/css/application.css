@@ -32,3 +32,9 @@ th {
   display:none;
   visibility:hidden;
 }
+
+.events img{
+  margin: 0px auto;
+  display: block;
+
+}
