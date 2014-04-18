@@ -40,8 +40,6 @@ function addLocation(event) {
     type: 'post',
     data: $(this).serialize(),
     success: function(data) {
-      console.log(data);
-      console.log("ajax success")
       $('.profile').html(data)
     }
   })
@@ -50,11 +48,10 @@ function addLocation(event) {
 function submitFeedback(event) {
   event.preventDefault();
   var jqhxr = $.ajax({
-    url: '/feedback/new',
+    url: '/event/feedback',
     type: 'post',
     data: $(this).serialize(),
     success: function(data) {
-      console.log(data);
       $('.profile').html(data)
     }
   })
