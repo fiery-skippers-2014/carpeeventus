@@ -17,6 +17,7 @@ function showDescription (){
 function eventChoice() {
   event.preventDefault();
   var event_container = $(this).parents('.event')
+  console.log(event_container)
   var event_data = {
     title: event_container.children('.title').text(),
     address: event_container.children('.event_address').text(),
