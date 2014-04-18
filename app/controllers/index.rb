@@ -84,6 +84,7 @@ end
 post '/location/new' do
   p params
   Location.find_by_id(params[:id]).update_attribute('location', params[:location])
+  redirect("/user/#{session[:user_id]}")
 end
 
 post '/event/feedback' do
@@ -94,7 +95,7 @@ end
 
 get '/opinions' do
   @opinions = UserOpinion.all.order(created_at: :desc)
-  erb :_opinions
+   redirect("/user/#{session[:user_id]}")
 end
 
 

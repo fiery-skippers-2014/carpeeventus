@@ -16,8 +16,8 @@
     <%end%>
     <span><%=location.latitude%> : <%=location.longitude%></span>
 
-    <form action="/location/new" method="post">
-      <input type="text" class="locationChoice" name="location" placeholder="Name this location:"/>
+    <form action="/location/new" method="post" class="locationChoice">
+      <input type="text" name="location" placeholder="Name this location:"/>
       <input type="hidden" value=<%=location.id%> name="id">
       <input type="submit" value= "Submit"/>
      </form>
@@ -57,3 +57,6 @@
      <br><br>
     <%end%>
 </div>
+
+
+
