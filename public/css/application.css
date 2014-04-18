@@ -27,3 +27,7 @@ th {
   max-height:200px;
   overflow:scroll;
 }
+
+#profile_right_side {
+  float:right;
+}

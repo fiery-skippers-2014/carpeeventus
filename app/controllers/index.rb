@@ -23,8 +23,8 @@ get '/sessions/new' do
 end
 
 get '/user/:id' do
-  @locations = Location.all   #!!!!change this to current_user.locations and add sort_by created_at
-  @events = Event.all      #!!!!!change this current_user.events
+  @locations = current_user.locations
+  @events = current_user.events
   @past_events = []
   @upcoming_events = []
 
@@ -86,6 +86,14 @@ post '/feedback/new' do
   p params
   UserOpinion.create(feedback: params[:feedback], event_id: params[:id], user_id: session[:user_id])
 end
+
+get '/opinions' do
+  @opinions = UserOpinion.all.order(created_at: :desc)
+  erb :_opinions
+end
+
+
+
 
 
 
