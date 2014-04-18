@@ -12,7 +12,7 @@
 <h4> You last logins were @</h4>
   <% @locations.each do |location| %>
     <span><%=location.updated_at%> near
-    <span>Latitude: <%=location.latitude%>, Longitude:<%=location.longitude%></span>
+    <span><%=location.latitude%> <%=location.longitude%></span>
     <% if location.location != nil%>
       <h4><%=location.location%><h4>
     <%end%>
