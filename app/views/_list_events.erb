@@ -4,14 +4,17 @@
 <ul>
   <%@all_events.each do |event| %>
     <div class="event" data-id=<%=event["event"]["id"]%>>
-      <h3><span class="title"><%=event["event"]["title"]%></span><br> - Distance from you:<%=event["event"]["distance"]%> - Address: <span class="event_address"><%=event["event"]["venue"]["address"]%> - </span>
-
-  <% if current_user %>
-      <a href= "#"  class="eventChoice">I'm interested in this event</a><br>
-      <% end %>
+    <% if current_user %>
+      <div class="rock">
+      <a href= "#"  class="eventChoice"><img class= "rock_img" src="http://cdsfmdumai.com/wp-content/uploads/2014/02/Dug_Rock_On.png" alt=""></img></a><br>
+    </div>
+  <% end %>
+      <h4><span class="title"><%=event["event"]["title"]%></span></h4><br>
+        Distance from you: <%=event["event"]["distance"]%><br>
+        Address: <span class="event_address"><%=event["event"]["venue"]["address"]%></span><br>
 
       Start Date: <span class="start_date"><%=event["event"]["start_date"]%></span><br>
-      End Date: <span class="end_date"><%=event["event"]["end_date"]%></span><br></h3><br>
+      End Date: <span class="end_date"><%=event["event"]["end_date"]%></span><br><br>
       <button class="description">Description</button><br>
       <div id="desc" class="descriptionNone"><%=event["event"]["description"]%></div>
       <br>

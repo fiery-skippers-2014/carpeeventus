@@ -68,3 +68,22 @@ th {
   background-color: gray;
 
 }
+
+.upcoming_event ul {
+  margin: 0;
+}
+
+.event h4 {
+  font-size: 1.2 em;
+  margin: 3px;
+}
+
+.rock {
+  float: right;
+  height: 10px;
+}
+
+.rock_img {
+  height: 56px;
+  margin-right: 10px;
+}
