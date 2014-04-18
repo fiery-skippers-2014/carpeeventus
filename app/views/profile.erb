@@ -9,15 +9,18 @@
 
 
 <div class="locations">
-<h4> Your recent logins</h4>
+<h4> You last logins were @</h4>
   <% @locations.each do |location| %>
+    <span><%=location.updated_at%> near
+    <span>Latitude: <%=location.latitude%>, Longitude:<%=location.longitude%></span>
     <% if location.location != nil%>
       <h4><%=location.location%><h4>
     <%end%>
-    <span><%=location.latitude%> : <%=location.longitude%></span>
 
-    <form action="/location/new" method="post">
-      <input type="text" class="locationChoice" name="location" placeholder="Name this location:"/>
+
+
+    <form action="/location/new" method="post" class="locationChoice">
+      <input type="text" name="location" placeholder="Name this location:"/>
       <input type="hidden" value=<%=location.id%> name="id">
       <input type="submit" value= "Submit"/>
      </form>
@@ -26,34 +29,37 @@
 
 
 <div class="past_events">
-<h2> Events upcoming: </h2>
-  <%@past_events.each do |event|%>
-    <h4> <%=event.title%> </h4>
-    <%=event.start_date%>
-    <%=event.end_date%>
-    <%=event.address%>
-     <a href="#" class="delete">Delete this event</a>
-    <%end%>
+  <h2> Events upcoming: </h2>
+    <%@past_events.each do |event|%>
+      <h4> <%=event.title%> </h4>
+      <%=event.start_date%>
+      <%=event.end_date%>
+      <%=event.address%>
+       <a href="#" class="delete">Delete this event</a>
+      <%end%>
 </div>
 
 
 <div class="upcoming_events">
-<h2> Did you go to these events? </h2>
-  <%@upcoming_events.each do |event| %>
-    <h4><%=event.title%></h4> @ <%=event.address%> on <%=event.end_date%>
-    <br>
-    Did you attend?
-    <form action="">
-      <input type="radio" name="lotsasex" value="true">Yes
-      <input type="radio" name="lotsasex" value="false">No
-    </form>
-    <br>
-    What did you think? (Make this ajaxy)
-    <form action="/event/feedback" method="post">
-      <input type="text" class="feedbackSubmitted" name="feedback" placeholder="How was it?"/>
-      <input type="hidden" value=<%=event.id%> name="id">
-      <input type="submit" value= "Submit"/>
-     </form>
-     <br><br>
-    <%end%>
+  <h2> Did you go to these events? </h2>
+    <%@upcoming_events.each do |event| %>
+      <h4><%=event.title%></h4> @ <%=event.address%> on <%=event.end_date%>
+      <br>
+      Did you attend?
+      <form action="">
+        <input type="radio" name="lotsasex" value="true">Yes
+        <input type="radio" name="lotsasex" value="false">No
+      </form>
+      <br>
+      Tell others what you thought of this event:
+      <form action="/event/feedback" method="post">
+        <input type="text" class="feedbackSubmitted" name="feedback" placeholder="How was it?"/>
+        <input type="hidden" value=<%=event.id%> name="id">
+        <input type="submit" value= "Submit"/>
+       </form>
+       <br><br>
+      <%end%>
 </div>
+
+
+

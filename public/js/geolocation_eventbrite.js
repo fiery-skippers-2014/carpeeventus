@@ -7,7 +7,6 @@ function initialize() {
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
-  // Try HTML5 geolocation
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       var pos = new google.maps.LatLng(position.coords.latitude,
@@ -24,7 +23,6 @@ function initialize() {
       handleNoGeolocation(true);
     });
   } else {
-    // Browser doesn't support Geolocation
     handleNoGeolocation(false);
   }
 }
@@ -51,15 +49,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 $(document).ready(function() {
 
   $('.find-event').on('click', getEvents)
-   // $('#logout').on('click', FB.logout(function(response){}))
 })
-
-
-// var logout = function () {
-//   console.log("we are here")
-//   debugger
-//   FB.logout()
-// }
 
 var getEvents = function () {
   event.preventDefault();
@@ -81,13 +71,3 @@ var getEvents = function () {
       })
   });
 }
-
-
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
-  // $('form').on('submit', function(event){
-  //   event.preventDefault();
-  //   $('.loading').text('LOADING YOUR PORN')
-
-  //
-
-// });

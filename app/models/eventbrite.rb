@@ -12,7 +12,7 @@ module Eventbrite
       @category = options[:category] || " "
 
       response = self.class.get("/json/event_search",
-        :query => {category: @category, within: @radius.to_i, within_unit: "M", latitude: @latitude, longitude: @longitude, max: 10, date: "Today"},
+        :query => {category: @category, within: @radius.to_i, within_unit: "M", latitude: @latitude, longitude: @longitude, max: 7, date: "Today"},
         :headers => {"Authorization" => "Bearer XXV6SZPCEUT42ILGNOGL"})
       return parseForEvents(response.body)
     end
