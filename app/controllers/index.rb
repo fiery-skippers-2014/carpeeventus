@@ -23,8 +23,8 @@ get '/sessions/new' do
 end
 
 get '/user/:id' do
-  @locations = Location.all   #!!!!change this to current_user.locations and add sort_by created_at
-  @events = Event.all      #!!!!!change this current_user.events
+  @locations = current_user.locations
+  @events = current_user.events
   @past_events = []
   @upcoming_events = []
 
@@ -35,8 +35,6 @@ get '/user/:id' do
       @upcoming_events << event
     end
   end
-
-
   erb :profile
 end
 
@@ -46,6 +44,7 @@ get '/logout' do
 end
 
 get '/location' do
+  p params
   puts "we're in location route"
   session[:user_id] = 1    #remove this at some point
   if current_user
@@ -56,10 +55,9 @@ get '/location' do
   options = {}
   options[:latitude] = params["position"][0]
   options[:longitude] = params["position"][1]
-  # if current_user  ADD THIS AGAIN once user starts working
-  #   options[:radius] = current_user.radius
-  #   options[:category] = current_user.category
-  # end
+  options[:radius] = params[:radius]
+  options[:category] = params[:category]
+
   @search_results = Eventbrite::Client.new(options)
 
   x= @search_results.to_json
@@ -85,9 +83,17 @@ post '/location/new' do
 end
 
 post '/feedback/new' do
-
-
+  p params
+  UserOpinion.create(feedback: params[:feedback], event_id: params[:id], user_id: session[:user_id])
 end
+
+get '/opinions' do
+  @opinions = UserOpinion.all.order(created_at: :desc)
+  erb :_opinions
+end
+
+
+
 
 
 
