@@ -28,6 +28,7 @@ th {
   overflow:scroll;
 }
 
-#profile_right_side {
-  float:right;
+.descriptionNone {
+  display:none;
+  visibility:hidden;
 }
