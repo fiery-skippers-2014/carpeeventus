@@ -25,6 +25,8 @@ post '/user' do
 end
 
 get '/user/:id' do
+  p params
+  p current_user
   @locations = current_user.locations
   @events = current_user.events
   @past_events = []

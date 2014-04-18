@@ -16,6 +16,11 @@ th {
         height: 400px;
       }
 
+#fb-button {
+  float: left;
+  padding: 20px 0px 0px 20px;
+}
+
 .logo {
   display: block;
    width: 200px;
@@ -33,8 +38,60 @@ th {
   visibility:hidden;
 }
 
+
 .events img{
   margin: 0px auto;
   display: block;
 
 }
+
+#logo-div {
+  float: right;
+  padding: 20px 30px 20px 0px;
+
+}
+
+.logo{
+  height: 100px;
+  width: 400px;
+}
+
+#options-form {
+  text-align: center;
+}
+
+.find-event {
+  border: 2px;
+  margin: auto;
+  padding: 20px 20px 20px 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #aaaaaa;
+  border-radius: 10px;
+
+}
+
+#find_event:hover {
+  background-color: gray;
+
+}
+
+.upcoming_event ul {
+  margin: 0;
+}
+
+.event h4 {
+  font-size: 1.2 em;
+  margin: 3px;
+}
+
+.rock {
+  float: right;
+  height: 10px;
+}
+
+.rock_img {
+  height: 56px;
+  margin-right: 10px;
+}
+
