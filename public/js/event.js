@@ -6,7 +6,13 @@ $(document).ready(function() {
     $('body').on('click', '.eventChoice', eventChoice)
     $('body').on('submit', '.locationChoice', addLocation)
     $('body').on('submit', '.feedbackSubmitted', submitFeedback)
+    $('body').on('click', '.description', showDescription)
+  }
 
+  function showDescription (){
+    var event_container = $(this).parent()
+    event_container.children('#desc').toggleClass('descriptionNone')
+    // $('#desc').toggleClass('descriptionNone')
   }
 
   function eventChoice() {
