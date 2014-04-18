@@ -6,6 +6,7 @@ $(document).ready(function() {
     $('body').on('click', '.eventChoice', eventChoice)
     $('body').on('submit', '.locationChoice', addLocation)
     $('body').on('submit', '.feedbackSubmitted', submitFeedback)
+
   }
 
   function eventChoice() {
@@ -22,7 +23,7 @@ $(document).ready(function() {
       type: 'post',
       data: event_data,
       success: function(data) {
-
+        $('.profile').html(data)
       }
     })
   }

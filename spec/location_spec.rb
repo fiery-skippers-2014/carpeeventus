@@ -1,4 +1,4 @@
-require 'spec helper'
+require 'spec_helper'
 
 describe Location do
   it {should belongs_to :user}

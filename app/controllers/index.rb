@@ -9,13 +9,20 @@ get '/sign_up' do
 end
 
 post '/user' do
-  @user = User.create(params)
-  if @user.errors.full_messages.count != 0
-    erb :_errors
-  else
+  if user_exists(params[:facebook_id]) == true
+    @user = User.find_by_facebook_id(params[:facebook_id])
+    @user.token = params[:token]
+    @user.save
     session[:user_id] = @user.id
-    redirect("/user/#{session[:user_id]}")
+  else
+    @user = User.create(params)
+    if @user.errors.full_messages.count != 0
+      erb :_errors
+    else
+    session[:user_id] = @user.id
+    end
   end
+    redirect("/user/#{session[:user_id]}")
 end
 
 get '/sessions/new' do
@@ -35,7 +42,7 @@ get '/user/:id' do
       @upcoming_events << event
     end
   end
-  erb :profile
+  erb :profile, :layout => false
 end
 
 get '/logout' do
@@ -44,9 +51,6 @@ get '/logout' do
 end
 
 get '/location' do
-  p params
-  puts "we're in location route"
-  session[:user_id] = 1    #remove this at some point
   if current_user
     latitude = params["position"][0].to_f.round(3).to_s
     longitude = params["position"][1].to_f.round(3).to_s
@@ -71,9 +75,9 @@ end
 
 
 post '/event/new' do
-  session[:user_id] = 1
   params[:user_id] = session[:user_id]
   Event.create(params)
+  redirect("/user/#{session[:user_id]}")
 end
 
 
@@ -82,9 +86,10 @@ post '/location/new' do
   Location.find_by_id(params[:id]).update_attribute('location', params[:location])
 end
 
-post '/feedback/new' do
+post '/event/feedback' do
   p params
   UserOpinion.create(feedback: params[:feedback], event_id: params[:id], user_id: session[:user_id])
+  redirect("/user/#{session[:user_id]}")
 end
 
 get '/opinions' do
