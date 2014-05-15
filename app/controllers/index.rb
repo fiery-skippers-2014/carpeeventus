@@ -1,4 +1,5 @@
 require 'awesome_print'
+require 'time'
 
 get '/' do
   erb :index
@@ -57,6 +58,8 @@ get '/location' do
   y = JSON.parse(x)
 
   @all_events = y["user_results"]["events"]
+
+
 
   @summary_of_results = @all_events.shift
   erb :_list_events, :layout => false
