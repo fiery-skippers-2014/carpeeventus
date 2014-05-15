@@ -10,7 +10,7 @@ $(document).ready(function() {
 
 
 function showDescription (){
-    var event_container = $(this).parent()
+    var event_container = $(this).parent().parent()
     event_container.children('#desc').toggleClass('descriptionNone')
 }
 

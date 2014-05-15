@@ -16,6 +16,11 @@ th {
         height: 400px;
       }
 
+#fb-button {
+  float: left;
+  padding: 20px 0px 0px 20px;
+}
+
 .logo {
   display: block;
    width: 200px;
@@ -24,7 +29,7 @@ th {
 }
 
 .event {
-  max-height:200px;
+  max-height:400px;
   overflow:scroll;
 }
 
@@ -33,8 +38,40 @@ th {
   visibility:hidden;
 }
 
+.description {
+  float:right;
+}
+
+
 .events img{
   margin: 0px auto;
   display: block;
+}
 
+#logo-div {
+  float: right;
+  padding: 20px 30px 20px 0px;
+}
+
+.logo{
+  height: 100px;
+  width: 400px;
+}
+
+#options-form {
+  text-align: center;
+}
+
+.find-event {
+  border: 2px;
+  margin: auto;
+  padding: 20px 20px 20px 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #aaaaaa;
+  border-radius: 10px;
+}
+
+#find_event:hover {
+  background-color: gray;
 }

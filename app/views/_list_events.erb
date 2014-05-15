@@ -1,18 +1,19 @@
 
 <div class="upcoming_events">
 <h2> Events you might be interested in:</h2>
-<ul>
+  
   <%@all_events.each do |event| %>
+  <ul>
     <div class="event" data-id=<%=event["event"]["id"]%>>
-      <h3><span class="title"><%=event["event"]["title"]%></span><br> - Distance from you:<%=event["event"]["distance"]%> - Address: <span class="event_address"><%=event["event"]["venue"]["address"]%> - </span>
+      <h3><span class="title"><%=event["event"]["title"]%></span><button class="description">More Info</button></h3><p> <b>Distance from you:</b> <%=event["event"]["distance"]%> <b>Address:</b> <span class="event_address"><%=event["event"]["venue"]["address"]%> </span>
 
   <% if current_user %>
       <a href= "#"  class="eventChoice">I'm interested in this event</a><br>
       <% end %>
-
-      Start Date: <span class="start_date"><%=event["event"]["start_date"]%></span><br>
-      End Date: <span class="end_date"><%=event["event"]["end_date"]%></span><br></h3><br>
-      <button class="description">Description</button><br>
+    <br>
+    <b>Date:</b> <span class="start_date"><%=Time.parse(event["event"]["start_date"]).strftime("%A, %b %d %I:%M %p")%></span>
+      to <span class="end_date"><%=Time.parse(event["event"]["end_date"]).strftime("%I:%M %p")%></span><br></p>
+    
       <div id="desc" class="descriptionNone"><%=event["event"]["description"]%></div>
       <br>
     </div>
