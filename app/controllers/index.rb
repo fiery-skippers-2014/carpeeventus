@@ -41,6 +41,7 @@ get '/user/:id' do
 end
 
 get '/location' do
+  p current_user
   if current_user
     latitude = params["position"][0].to_f.round(3).to_s
     longitude = params["position"][1].to_f.round(3).to_s
@@ -58,8 +59,6 @@ get '/location' do
   y = JSON.parse(x)
 
   @all_events = y["user_results"]["events"]
-
-
 
   @summary_of_results = @all_events.shift
   erb :_list_events, :layout => false
@@ -83,7 +82,7 @@ end
 
 get '/opinion/new' do
   @opinions = UserOpinion.all.order(created_at: :desc)
-   redirect("/user/#{session[:user_id]}")
+  redirect("/user/#{session[:user_id]}")
 end
 
 get '/logout' do

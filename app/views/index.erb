@@ -1,48 +1,46 @@
-
 <div id="logo-div">
+<% if current_user %>
+  <a id="logout" href="/logout">Logout</a>
+<% end %>
 <img class="logo"  src="http://i.imgur.com/IKBPvD5.png" alt="">
 </div>
 
 <div id="map-canvas"></div>
 
 <form  action='/location' method='get'>
-    <div id = "options-form">
+  <div id = "options-form">
     <input class="find-event" type='submit' name="find_event" value="carpe eventus!">
     <div>
-    <select class="mycategory">
-      <option value="">Optional Categories</option>
-      <option value="3D printing">3D printing</option>
-      <option value="Conference">Conference</option>
-      <option value="Coffee">Coffee</option>
-      <option value="Charity & Causes">Charity & Causes</option>
-      <option value="Film & Media">Film & Media</option>
-      <option value="Food and Drinks">Food and Drinks</option>
-      <option value="Javascript">Javascript</option>
-      <option value="HTML">HTML</option>
-      <option value="Job Fairs">Job Fairs</option>
-      <option value="Music">Music</option>
-      <option value="Python">Python</option>
-      <option value="Ruby">Ruby</option>
-      <option value="Sports and Fitness">Sports and Fitness</option>
-      <option value="Travel">Travel</option>
-      <option value="Wearables">Wearables</option>    
-    </select>
-    <select class="mydistance">
-      <option value="100">Optional Distance</option>
-      <option value="0.25">Right next door (0.25 mi)</option>
-      <option value="1.0">10 minute walk (1 mi)</option>
-      <option value="5">Over yonder (5 mi)</option>
-      <option value="10">Slightly more yonder (10 mi)</option>
-      <option value="20">Most Yonderest (20 mi)</option>
-    </select>
-</div>
+      <select class="mycategory">
+        <option value="">Optional Categories</option>
+        <option value="3D printing">3D printing</option>
+        <option value="Conference">Conference</option>
+        <option value="Coffee">Coffee</option>
+        <option value="Charity & Causes">Charity & Causes</option>
+        <option value="Film & Media">Film & Media</option>
+        <option value="Food and Drinks">Food and Drinks</option>
+        <option value="Javascript">Javascript</option>
+        <option value="HTML">HTML</option>
+        <option value="Job Fairs">Job Fairs</option>
+        <option value="Music">Music</option>
+        <option value="Python">Python</option>
+        <option value="Ruby">Ruby</option>
+        <option value="Sports and Fitness">Sports and Fitness</option>
+        <option value="Travel">Travel</option>
+        <option value="Wearables">Wearables</option>    
+      </select>
+      <select class="mydistance">
+        <option value="100">Optional Distance</option>
+        <option value="0.25">Right next door (0.25 mi)</option>
+        <option value="1.0">10 minute walk (1 mi)</option>
+        <option value="5">Over yonder (5 mi)</option>
+        <option value="10">Slightly more yonder (10 mi)</option>
+        <option value="20">Most Yonderest (20 mi)</option>
+      </select>
+    </div>
   </div>
-  </form>
+</form>
 
-
-<div class="profile">
-</div>
-<div class="test"> </div>
-
-<div class="events">
-</div>
+<div class="profile"></div>
+<div class="test"></div>
+<div class="events"></div>
