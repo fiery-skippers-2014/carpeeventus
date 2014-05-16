@@ -5,14 +5,6 @@ get '/' do
   erb :index
 end
 
-get '/sign_up' do
-  erb :sign_up
-end
-
-get '/sessions/new' do
-  erb :sign_in
-end
-
 post '/user' do
   if user_exists(params[:facebook_id]) == true
     @user = User.find_by_facebook_id(params[:facebook_id])
@@ -31,8 +23,9 @@ get '/user/:id' do
   @past_events = []
   @upcoming_events = []
   @events.each do |event|
-    if Time.parse(event.end_date)- Time.now > 0
+    if Time.parse(event.start_date)- Time.now > 0
       @past_events << event
+      @past_events.sort_by! { |event| Time.parse(event.start_date) }.reverse
     else
       @upcoming_events << event
     end
@@ -41,7 +34,6 @@ get '/user/:id' do
 end
 
 get '/location' do
-  p current_user
   if current_user
     latitude = params["position"][0].to_f.round(3).to_s
     longitude = params["position"][1].to_f.round(3).to_s

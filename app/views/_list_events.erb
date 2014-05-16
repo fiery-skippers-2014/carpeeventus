@@ -8,17 +8,16 @@
 
       <% if current_user %>
         <div class="rock">
-        <a href= "#"  class="eventChoice"><img class= "rock_img" src="http://cdsfmdumai.com/wp-content/uploads/2014/02/Dug_Rock_On.png" alt=""></img></a>
+        <img class= "rock_img eventChoice" src="http://cdsfmdumai.com/wp-content/uploads/2014/02/Dug_Rock_On.png" alt=""></img>
         </div>
       <% end %>
 
       <p> 
       <b>Distance from you:</b> <%=event["event"]["distance"]%> <b>Address:</b> <span class="event_address"><%=event["event"]["venue"]["address"]%> </span>
 
+      <br>
 
-    <br>
-
-    <b>Date:</b> <span class="start_date"><%=Time.parse(event["event"]["start_date"]).strftime("%A, %b %d %I:%M %p")%></span>
+      <b>Date:</b> <span class="start_date"><%=Time.parse(event["event"]["start_date"]).strftime("%A, %b %d %I:%M %p")%></span>
       to <span class="end_date"><%=Time.parse(event["event"]["end_date"]).strftime("%I:%M %p")%></span><br></p>
     
       <div id="desc" class="descriptionNone"><%=event["event"]["description"]%></div>

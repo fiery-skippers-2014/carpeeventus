@@ -5,45 +5,42 @@
 </div>
 
 <div class="locations">
-  <p> You last logins were @</p>
+  <p> You last logins were @
   <% @locations.each do |location| %>
-    <ul>
-    <li>
-    <p>
     <span><% if location.location != nil%>
       <b><%=location.location%></b> on 
     <%end%>
-    <%=location.updated_at%> near
+    <%=location.updated_at.strftime("%A, %b %d %I:%M %p")%> near
     <%=location.latitude%> <%=location.longitude%>
-    <form action="/location/new" method="post" class="locationChoice">
-      <input type="text" name="location" placeholder="Name this location:"/>
-      <input type="hidden" value=<%=location.id%> name="id">
-      <input type="submit" value= "Submit"/>
-     </form>
+    <% if location.location == nil%>
+      <form action="/location/new" method="post" class="locationChoice">
+        <input type="text" name="location" placeholder="Name this location:"/>
+        <input type="hidden" value=<%=location.id%> name="id">
+        <input type="submit" value= "Submit"/>
+      </form>
+     <%end%>
      </span>
     </p>
-    </li>
-    </ul>
   <% end %>
 </div>
 
 
 <div class="past_events">
-  <h2> Your saved events: </h2>
+  <h2> Your upcoming events </h2>
     <%@past_events.each do |event|%>
-      <h4> <%=event.title%> </h4>
-      <%=event.start_date%>
-      <%=event.end_date%>
-      <%=event.address%>
-      <a href="#" class="delete">Remove</a>
+      <%=event.title%>, <%=event.address%>,
+      <small><%=event.start_date%> to 
+      <%=event.end_date%> 
+      <a href="#" class="delete">Remove</a></small>
+      <br>
     <%end%>
 </div>
 
 
 <div class="upcoming_events">
-  <h2> How were these events? </h2>
+  <h2> Your past events </h2>
     <%@upcoming_events.each do |event| %>
-      <h4><%=event.title%></h4> @ <%=event.address%> on <%=event.end_date%>
+      <h4><%=event.title%></h4> @ <%=event.address%> on <%=event.start_date%>
       <br>
       Did you attend?
       <form action="">
