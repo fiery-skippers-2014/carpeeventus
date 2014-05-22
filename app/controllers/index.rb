@@ -57,8 +57,12 @@ get '/location' do
 end
 
 post '/event/new' do
-  params[:user_id] = session[:user_id]
-  Event.create(params)
+  event = Event.new(params)
+  current_user.events << event
+  if event.save
+  else 
+    puts "Failed"
+  end 
   redirect("/user/#{session[:user_id]}")
 end
 
