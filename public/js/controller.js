@@ -16,12 +16,12 @@ function showDescription (){
 
 function eventChoice() {
   event.preventDefault();
-  var event_container = $(this).parent()
+  var event_container = $(this).parent().parent()
   var event_data = {
-    title: event_container.children('.title').text(),
-    address: event_container.children('.event_address').text(),
-    start_date: event_container.children('.start_date').text(),
-    end_date: event_container.children('.end_date').text()
+    title: event_container.children('h3').children('.title').text(),
+    address: event_container.children('p').children('.event_address').text(),
+    start_date: event_container.children('p').children('.start_date').text(),
+    end_date: event_container.children('p').children('.end_date').text()
   }
   $.ajax({
     url: '/event/new',

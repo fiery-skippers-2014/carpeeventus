@@ -5,14 +5,6 @@ get '/' do
   erb :index
 end
 
-get '/sign_up' do
-  erb :sign_up
-end
-
-get '/sessions/new' do
-  erb :sign_in
-end
-
 post '/user' do
   if user_exists(params[:facebook_id]) == true
     @user = User.find_by_facebook_id(params[:facebook_id])
@@ -31,8 +23,9 @@ get '/user/:id' do
   @past_events = []
   @upcoming_events = []
   @events.each do |event|
-    if Time.parse(event.end_date)- Time.now > 0
+    if Time.parse(event.start_date)- Time.now > 0
       @past_events << event
+      @past_events.sort_by! { |event| Time.parse(event.start_date) }.reverse
     else
       @upcoming_events << event
     end
@@ -59,8 +52,6 @@ get '/location' do
 
   @all_events = y["user_results"]["events"]
 
-
-
   @summary_of_results = @all_events.shift
   erb :_list_events, :layout => false
 end
@@ -83,7 +74,7 @@ end
 
 get '/opinion/new' do
   @opinions = UserOpinion.all.order(created_at: :desc)
-   redirect("/user/#{session[:user_id]}")
+  redirect("/user/#{session[:user_id]}")
 end
 
 get '/logout' do

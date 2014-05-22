@@ -1,49 +1,46 @@
-
 <div class="preference">
-  <a id="logout" href="/logout">Logout</a>
-<h2> Your current user info: </h2>
-   <%=current_user.name%>
-   <%=current_user.distance%>
-   <%=current_user.category%>
+  <h2> Welcome back <%=current_user.name%>!</h2>
+  <%=current_user.distance%>
+  <%=current_user.category%>
 </div>
 
-
 <div class="locations">
-<h4> You last logins were @</h4>
+  <p> You last logins were @
   <% @locations.each do |location| %>
-    <span><%=location.updated_at%> near
-    <span><%=location.latitude%> <%=location.longitude%></span>
-    <% if location.location != nil%>
-      <h4><%=location.location%><h4>
+    <span><% if location.location != nil%>
+      <b><%=location.location%></b> on 
     <%end%>
-
-
-
-    <form action="/location/new" method="post" class="locationChoice">
-      <input type="text" name="location" placeholder="Name this location:"/>
-      <input type="hidden" value=<%=location.id%> name="id">
-      <input type="submit" value= "Submit"/>
-     </form>
+    <%=location.updated_at.strftime("%A, %b %d %I:%M %p")%> near
+    <%=location.latitude%> <%=location.longitude%>
+    <% if location.location == nil%>
+      <form action="/location/new" method="post" class="locationChoice">
+        <input type="text" name="location" placeholder="Name this location:"/>
+        <input type="hidden" value=<%=location.id%> name="id">
+        <input type="submit" value= "Submit"/>
+      </form>
+     <%end%>
+     </span>
+    </p>
   <% end %>
 </div>
 
 
 <div class="past_events">
-  <h2> Events upcoming: </h2>
+  <h2> Your upcoming events </h2>
     <%@past_events.each do |event|%>
-      <h4> <%=event.title%> </h4>
-      <%=event.start_date%>
-      <%=event.end_date%>
-      <%=event.address%>
-       <a href="#" class="delete">Delete this event</a>
-      <%end%>
+      <%=event.title%>, <%=event.address%>,
+      <small><%=event.start_date%> to 
+      <%=event.end_date%> 
+      <a href="#" class="delete">Remove</a></small>
+      <br>
+    <%end%>
 </div>
 
 
 <div class="upcoming_events">
-  <h2> Did you go to these events? </h2>
+  <h2> Your past events </h2>
     <%@upcoming_events.each do |event| %>
-      <h4><%=event.title%></h4> @ <%=event.address%> on <%=event.end_date%>
+      <h4><%=event.title%></h4> @ <%=event.address%> on <%=event.start_date%>
       <br>
       Did you attend?
       <form action="">
